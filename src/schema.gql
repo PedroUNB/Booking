@@ -19,6 +19,7 @@ input CreateUser {
   createdAt: DateTime
   id: ID
   name: String
+  removedAt: DateTime
   updatedAt: DateTime
 }
 
@@ -34,6 +35,26 @@ input CursorPaging {
 
   """Paginate last"""
   last: Int
+}
+
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
 }
 
 """
@@ -167,6 +188,7 @@ input UpdateUser {
   createdAt: DateTime
   id: ID
   name: String
+  removedAt: DateTime
   updatedAt: DateTime
 }
 
@@ -174,16 +196,16 @@ type User {
   createdAt: DateTime!
   id: ID!
   name: String!
+  removedAt: DateTime!
   updatedAt: DateTime!
 }
 
 type UserAggregateGroupBy {
+  createdAt: DateTime
   id: ID
   name: String
-}
-
-type UserAvgAggregate {
-  id: Float
+  removedAt: DateTime
+  updatedAt: DateTime
 }
 
 type UserConnection {
@@ -195,21 +217,28 @@ type UserConnection {
 }
 
 type UserCountAggregate {
+  createdAt: Int
   id: Int
   name: Int
+  removedAt: Int
+  updatedAt: Int
 }
 
 input UserDeleteFilter {
   and: [UserDeleteFilter!]
+  createdAt: DateFieldComparison
   id: IDFilterComparison
   name: StringFieldComparison
   or: [UserDeleteFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type UserDeleteResponse {
   createdAt: DateTime
   id: ID
   name: String
+  removedAt: DateTime
   updatedAt: DateTime
 }
 
@@ -223,19 +252,28 @@ type UserEdge {
 
 input UserFilter {
   and: [UserFilter!]
+  createdAt: DateFieldComparison
   id: IDFilterComparison
   name: StringFieldComparison
   or: [UserFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type UserMaxAggregate {
+  createdAt: DateTime
   id: ID
   name: String
+  removedAt: DateTime
+  updatedAt: DateTime
 }
 
 type UserMinAggregate {
+  createdAt: DateTime
   id: ID
   name: String
+  removedAt: DateTime
+  updatedAt: DateTime
 }
 
 input UserSort {
@@ -245,17 +283,19 @@ input UserSort {
 }
 
 enum UserSortFields {
+  createdAt
   id
   name
-}
-
-type UserSumAggregate {
-  id: Float
+  removedAt
+  updatedAt
 }
 
 input UserUpdateFilter {
   and: [UserUpdateFilter!]
+  createdAt: DateFieldComparison
   id: IDFilterComparison
   name: StringFieldComparison
   or: [UserUpdateFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
 }
