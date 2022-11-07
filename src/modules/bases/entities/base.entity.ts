@@ -10,11 +10,11 @@ import {
   UpdatedAt,
   Unique,
   Default,
+  DeletedAt,
 } from 'sequelize-typescript';
 
 @Table({
   freezeTableName: true,
-  tableName: 'user',
   timestamps: true,
   underscored: true,
   paranoid: true,
@@ -34,6 +34,6 @@ export class BaseEntity extends Model<BaseEntity, Partial<BaseEntity>> {
   @UpdatedAt
   updatedAt: Date;
 
-  @Column(DataType.DATE)
+  @DeletedAt
   removedAt: Date;
 }

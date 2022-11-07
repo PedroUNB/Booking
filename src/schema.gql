@@ -2,39 +2,63 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-"""Cursor for paging through collections"""
-scalar ConnectionCursor
+input CreateExerciseInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateFileInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateManyExercisesInput {
+  """Array of records to create"""
+  exercises: [CreateExerciseInput!]!
+}
+
+input CreateManyFilesInput {
+  """Array of records to create"""
+  files: [CreateFileInput!]!
+}
+
+input CreateManyProfilesInput {
+  """Array of records to create"""
+  profiles: [CreateProfileInput!]!
+}
 
 input CreateManyUsersInput {
   """Array of records to create"""
-  users: [CreateUser!]!
+  users: [CreateUserInput!]!
+}
+
+input CreateOneExerciseInput {
+  """The record to create"""
+  exercise: CreateExerciseInput!
+}
+
+input CreateOneFileInput {
+  """The record to create"""
+  file: CreateFileInput!
+}
+
+input CreateOneProfileInput {
+  """The record to create"""
+  profile: CreateProfileInput!
 }
 
 input CreateOneUserInput {
   """The record to create"""
-  user: CreateUser!
+  user: CreateUserInput!
 }
 
-input CreateUser {
-  createdAt: DateTime
-  id: ID
-  name: String
-  removedAt: DateTime
-  updatedAt: DateTime
+input CreateProfileInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
-input CursorPaging {
-  """Paginate after opaque cursor"""
-  after: ConnectionCursor
-
-  """Paginate before opaque cursor"""
-  before: ConnectionCursor
-
-  """Paginate first"""
-  first: Int
-
-  """Paginate last"""
-  last: Int
+input CreateUserInput {
+  name: String!
 }
 
 input DateFieldComparison {
@@ -62,6 +86,21 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DeleteManyExercisesInput {
+  """Filter to find records to delete"""
+  filter: ExerciseDeleteFilter!
+}
+
+input DeleteManyFilesInput {
+  """Filter to find records to delete"""
+  filter: FileDeleteFilter!
+}
+
+input DeleteManyProfilesInput {
+  """Filter to find records to delete"""
+  filter: ProfileDeleteFilter!
+}
+
 type DeleteManyResponse {
   """The number of records deleted."""
   deletedCount: Int!
@@ -72,9 +111,230 @@ input DeleteManyUsersInput {
   filter: UserDeleteFilter!
 }
 
+input DeleteOneExerciseInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneFileInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneProfileInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 input DeleteOneUserInput {
   """The id of the record to delete."""
   id: ID!
+}
+
+type Exercise {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  removedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ExerciseAggregateGroupBy {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type ExerciseConnection {
+  """Array of nodes."""
+  nodes: [Exercise!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ExerciseCountAggregate {
+  createdAt: Int
+  id: Int
+  name: Int
+  removedAt: Int
+  updatedAt: Int
+}
+
+input ExerciseDeleteFilter {
+  and: [ExerciseDeleteFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ExerciseDeleteFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ExerciseDeleteResponse {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input ExerciseFilter {
+  and: [ExerciseFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ExerciseFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ExerciseMaxAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type ExerciseMinAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input ExerciseSort {
+  direction: SortDirection!
+  field: ExerciseSortFields!
+  nulls: SortNulls
+}
+
+enum ExerciseSortFields {
+  createdAt
+  id
+  name
+  removedAt
+  updatedAt
+}
+
+input ExerciseUpdateFilter {
+  and: [ExerciseUpdateFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ExerciseUpdateFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type File {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  removedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type FileAggregateGroupBy {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type FileConnection {
+  """Array of nodes."""
+  nodes: [File!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type FileCountAggregate {
+  createdAt: Int
+  id: Int
+  name: Int
+  removedAt: Int
+  updatedAt: Int
+}
+
+input FileDeleteFilter {
+  and: [FileDeleteFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [FileDeleteFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type FileDeleteResponse {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input FileFilter {
+  and: [FileFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [FileFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type FileMaxAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type FileMinAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input FileSort {
+  direction: SortDirection!
+  field: FileSortFields!
+  nulls: SortNulls
+}
+
+enum FileSortFields {
+  createdAt
+  id
+  name
+  removedAt
+  updatedAt
+}
+
+input FileUpdateFilter {
+  and: [FileUpdateFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [FileUpdateFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 input IDFilterComparison {
@@ -95,29 +355,194 @@ input IDFilterComparison {
 }
 
 type Mutation {
+  createManyExercises(input: CreateManyExercisesInput!): [Exercise!]!
+  createManyFiles(input: CreateManyFilesInput!): [File!]!
+  createManyProfiles(input: CreateManyProfilesInput!): [Profile!]!
   createManyUsers(input: CreateManyUsersInput!): [User!]!
+  createOneExercise(input: CreateOneExerciseInput!): Exercise!
+  createOneFile(input: CreateOneFileInput!): File!
+  createOneProfile(input: CreateOneProfileInput!): Profile!
   createOneUser(input: CreateOneUserInput!): User!
+  deleteManyExercises(input: DeleteManyExercisesInput!): DeleteManyResponse!
+  deleteManyFiles(input: DeleteManyFilesInput!): DeleteManyResponse!
+  deleteManyProfiles(input: DeleteManyProfilesInput!): DeleteManyResponse!
   deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
+  deleteOneExercise(input: DeleteOneExerciseInput!): ExerciseDeleteResponse!
+  deleteOneFile(input: DeleteOneFileInput!): FileDeleteResponse!
+  deleteOneProfile(input: DeleteOneProfileInput!): ProfileDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  updateManyExercises(input: UpdateManyExercisesInput!): UpdateManyResponse!
+  updateManyFiles(input: UpdateManyFilesInput!): UpdateManyResponse!
+  updateManyProfiles(input: UpdateManyProfilesInput!): UpdateManyResponse!
   updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
+  updateOneExercise(input: UpdateOneExerciseInput!): Exercise!
+  updateOneFile(input: UpdateOneFileInput!): File!
+  updateOneProfile(input: UpdateOneProfileInput!): Profile!
   updateOneUser(input: UpdateOneUserInput!): User!
 }
 
-type PageInfo {
-  """The cursor of the last returned record."""
-  endCursor: ConnectionCursor
-
+type OffsetPageInfo {
   """true if paging forward and there are more records."""
   hasNextPage: Boolean
 
   """true if paging backwards and there are more records."""
   hasPreviousPage: Boolean
+}
 
-  """The cursor of the first returned record."""
-  startCursor: ConnectionCursor
+input OffsetPaging {
+  """Limit the number of records returned"""
+  limit: Int
+
+  """Offset to start returning records from"""
+  offset: Int
+}
+
+type Profile {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  removedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProfileAggregateGroupBy {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type ProfileConnection {
+  """Array of nodes."""
+  nodes: [Profile!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ProfileCountAggregate {
+  createdAt: Int
+  id: Int
+  name: Int
+  removedAt: Int
+  updatedAt: Int
+}
+
+input ProfileDeleteFilter {
+  and: [ProfileDeleteFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ProfileDeleteFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ProfileDeleteResponse {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input ProfileFilter {
+  and: [ProfileFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ProfileFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type ProfileMaxAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type ProfileMinAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input ProfileSort {
+  direction: SortDirection!
+  field: ProfileSortFields!
+  nulls: SortNulls
+}
+
+enum ProfileSortFields {
+  createdAt
+  id
+  name
+  removedAt
+  updatedAt
+}
+
+input ProfileUpdateFilter {
+  and: [ProfileUpdateFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [ProfileUpdateFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
 }
 
 type Query {
+  exercise(
+    """The id of the record to find."""
+    id: ID!
+  ): Exercise
+  exercises(
+    """Specify to filter the records returned."""
+    filter: ExerciseFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [ExerciseSort!] = []
+  ): ExerciseConnection!
+  file(
+    """The id of the record to find."""
+    id: ID!
+  ): File
+  files(
+    """Specify to filter the records returned."""
+    filter: FileFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [FileSort!] = []
+  ): FileConnection!
+  profile(
+    """The id of the record to find."""
+    id: ID!
+  ): Profile
+  profiles(
+    """Specify to filter the records returned."""
+    filter: ProfileFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [ProfileSort!] = []
+  ): ProfileConnection!
   user(
     """The id of the record to find."""
     id: ID!
@@ -127,7 +552,7 @@ type Query {
     filter: UserFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [UserSort!] = []
@@ -163,6 +588,40 @@ input StringFieldComparison {
   notLike: String
 }
 
+input UpdateExerciseInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateFileInput {
+  id: Int!
+}
+
+input UpdateManyExercisesInput {
+  """Filter used to find fields to update"""
+  filter: ExerciseUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateExerciseInput!
+}
+
+input UpdateManyFilesInput {
+  """Filter used to find fields to update"""
+  filter: FileUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateFileInput!
+}
+
+input UpdateManyProfilesInput {
+  """Filter used to find fields to update"""
+  filter: ProfileUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateProfileInput!
+}
+
 type UpdateManyResponse {
   """The number of records updated."""
   updatedCount: Int!
@@ -173,7 +632,31 @@ input UpdateManyUsersInput {
   filter: UserUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateUser!
+  update: UpdateUserInput!
+}
+
+input UpdateOneExerciseInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateExerciseInput!
+}
+
+input UpdateOneFileInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateFileInput!
+}
+
+input UpdateOneProfileInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateProfileInput!
 }
 
 input UpdateOneUserInput {
@@ -181,15 +664,17 @@ input UpdateOneUserInput {
   id: ID!
 
   """The update to apply."""
-  update: UpdateUser!
+  update: UpdateUserInput!
 }
 
-input UpdateUser {
-  createdAt: DateTime
-  id: ID
-  name: String
-  removedAt: DateTime
-  updatedAt: DateTime
+input UpdateProfileInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  id: Int!
 }
 
 type User {
@@ -209,11 +694,14 @@ type UserAggregateGroupBy {
 }
 
 type UserConnection {
-  """Array of edges."""
-  edges: [UserEdge!]!
+  """Array of nodes."""
+  nodes: [User!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type UserCountAggregate {
@@ -240,14 +728,6 @@ type UserDeleteResponse {
   name: String
   removedAt: DateTime
   updatedAt: DateTime
-}
-
-type UserEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the User"""
-  node: User!
 }
 
 input UserFilter {

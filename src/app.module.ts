@@ -2,10 +2,15 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './modules/user/user.module';
 import { UserEntity } from './modules/user/entities/user.entity';
+import { ProfileEntity } from './modules/profile/entities/profile.entity';
+import { ProfileModule } from './modules/profile/profile.module';
+import { FileEntity } from './modules/file/entities/file.entity';
+import { FileModule } from './modules/file/file.module';
+import { ExerciseModule } from './modules/exercise/exercise.module';
+import { ExerciseEntity } from './modules/exercise/entities/exercise.entity';
 
 @Module({
   imports: [
@@ -18,7 +23,7 @@ import { UserEntity } from './modules/user/entities/user.entity';
       database: 'booking',
       autoLoadModels: true,
       synchronize: true,
-      models: [UserEntity],
+      models: [UserEntity, ProfileEntity, FileEntity, ExerciseEntity],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -26,7 +31,10 @@ import { UserEntity } from './modules/user/entities/user.entity';
       sortSchema: true,
     }),
     UserModule,
+    ProfileModule,
+    FileModule,
+    ExerciseModule,
   ],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
