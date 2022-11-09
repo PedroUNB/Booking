@@ -11,6 +11,8 @@ import { FileEntity } from './modules/file/entities/file.entity';
 import { FileModule } from './modules/file/file.module';
 import { ExerciseModule } from './modules/exercise/exercise.module';
 import { ExerciseEntity } from './modules/exercise/entities/exercise.entity';
+import { MuscleGroupModule } from './modules/muscle-group/muscle-group.module';
+import { MuscleGroupEntity } from './modules/muscle-group/entities/muscle-group.entity';
 
 @Module({
   imports: [
@@ -23,7 +25,13 @@ import { ExerciseEntity } from './modules/exercise/entities/exercise.entity';
       database: 'booking',
       autoLoadModels: true,
       synchronize: true,
-      models: [UserEntity, ProfileEntity, FileEntity, ExerciseEntity],
+      models: [
+        UserEntity,
+        ProfileEntity,
+        FileEntity,
+        ExerciseEntity,
+        MuscleGroupEntity,
+      ],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -34,6 +42,7 @@ import { ExerciseEntity } from './modules/exercise/entities/exercise.entity';
     ProfileModule,
     FileModule,
     ExerciseModule,
+    MuscleGroupModule,
   ],
   providers: [],
 })

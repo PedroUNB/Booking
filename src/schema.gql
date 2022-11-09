@@ -22,6 +22,11 @@ input CreateManyFilesInput {
   files: [CreateFileInput!]!
 }
 
+input CreateManyMuscleGroupsInput {
+  """Array of records to create"""
+  muscleGroups: [CreateMuscleGroupInput!]!
+}
+
 input CreateManyProfilesInput {
   """Array of records to create"""
   profiles: [CreateProfileInput!]!
@@ -32,6 +37,11 @@ input CreateManyUsersInput {
   users: [CreateUserInput!]!
 }
 
+input CreateMuscleGroupInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateOneExerciseInput {
   """The record to create"""
   exercise: CreateExerciseInput!
@@ -40,6 +50,11 @@ input CreateOneExerciseInput {
 input CreateOneFileInput {
   """The record to create"""
   file: CreateFileInput!
+}
+
+input CreateOneMuscleGroupInput {
+  """The record to create"""
+  muscleGroup: CreateMuscleGroupInput!
 }
 
 input CreateOneProfileInput {
@@ -96,6 +111,11 @@ input DeleteManyFilesInput {
   filter: FileDeleteFilter!
 }
 
+input DeleteManyMuscleGroupsInput {
+  """Filter to find records to delete"""
+  filter: MuscleGroupDeleteFilter!
+}
+
 input DeleteManyProfilesInput {
   """Filter to find records to delete"""
   filter: ProfileDeleteFilter!
@@ -117,6 +137,11 @@ input DeleteOneExerciseInput {
 }
 
 input DeleteOneFileInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteOneMuscleGroupInput {
   """The id of the record to delete."""
   id: ID!
 }
@@ -354,29 +379,138 @@ input IDFilterComparison {
   notLike: ID
 }
 
+type MuscleGroup {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  removedAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type MuscleGroupAggregateGroupBy {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type MuscleGroupConnection {
+  """Array of nodes."""
+  nodes: [MuscleGroup!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type MuscleGroupCountAggregate {
+  createdAt: Int
+  id: Int
+  name: Int
+  removedAt: Int
+  updatedAt: Int
+}
+
+input MuscleGroupDeleteFilter {
+  and: [MuscleGroupDeleteFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [MuscleGroupDeleteFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type MuscleGroupDeleteResponse {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input MuscleGroupFilter {
+  and: [MuscleGroupFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [MuscleGroupFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
+type MuscleGroupMaxAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+type MuscleGroupMinAggregate {
+  createdAt: DateTime
+  id: ID
+  name: String
+  removedAt: DateTime
+  updatedAt: DateTime
+}
+
+input MuscleGroupSort {
+  direction: SortDirection!
+  field: MuscleGroupSortFields!
+  nulls: SortNulls
+}
+
+enum MuscleGroupSortFields {
+  createdAt
+  id
+  name
+  removedAt
+  updatedAt
+}
+
+input MuscleGroupUpdateFilter {
+  and: [MuscleGroupUpdateFilter!]
+  createdAt: DateFieldComparison
+  id: IDFilterComparison
+  name: StringFieldComparison
+  or: [MuscleGroupUpdateFilter!]
+  removedAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+}
+
 type Mutation {
   createManyExercises(input: CreateManyExercisesInput!): [Exercise!]!
   createManyFiles(input: CreateManyFilesInput!): [File!]!
+  createManyMuscleGroups(input: CreateManyMuscleGroupsInput!): [MuscleGroup!]!
   createManyProfiles(input: CreateManyProfilesInput!): [Profile!]!
   createManyUsers(input: CreateManyUsersInput!): [User!]!
   createOneExercise(input: CreateOneExerciseInput!): Exercise!
   createOneFile(input: CreateOneFileInput!): File!
+  createOneMuscleGroup(input: CreateOneMuscleGroupInput!): MuscleGroup!
   createOneProfile(input: CreateOneProfileInput!): Profile!
   createOneUser(input: CreateOneUserInput!): User!
   deleteManyExercises(input: DeleteManyExercisesInput!): DeleteManyResponse!
   deleteManyFiles(input: DeleteManyFilesInput!): DeleteManyResponse!
+  deleteManyMuscleGroups(input: DeleteManyMuscleGroupsInput!): DeleteManyResponse!
   deleteManyProfiles(input: DeleteManyProfilesInput!): DeleteManyResponse!
   deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
   deleteOneExercise(input: DeleteOneExerciseInput!): ExerciseDeleteResponse!
   deleteOneFile(input: DeleteOneFileInput!): FileDeleteResponse!
+  deleteOneMuscleGroup(input: DeleteOneMuscleGroupInput!): MuscleGroupDeleteResponse!
   deleteOneProfile(input: DeleteOneProfileInput!): ProfileDeleteResponse!
   deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
   updateManyExercises(input: UpdateManyExercisesInput!): UpdateManyResponse!
   updateManyFiles(input: UpdateManyFilesInput!): UpdateManyResponse!
+  updateManyMuscleGroups(input: UpdateManyMuscleGroupsInput!): UpdateManyResponse!
   updateManyProfiles(input: UpdateManyProfilesInput!): UpdateManyResponse!
   updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
   updateOneExercise(input: UpdateOneExerciseInput!): Exercise!
   updateOneFile(input: UpdateOneFileInput!): File!
+  updateOneMuscleGroup(input: UpdateOneMuscleGroupInput!): MuscleGroup!
   updateOneProfile(input: UpdateOneProfileInput!): Profile!
   updateOneUser(input: UpdateOneUserInput!): User!
 }
@@ -529,6 +663,20 @@ type Query {
     """Specify to sort results."""
     sorting: [FileSort!] = []
   ): FileConnection!
+  muscleGroup(
+    """The id of the record to find."""
+    id: ID!
+  ): MuscleGroup
+  muscleGroups(
+    """Specify to filter the records returned."""
+    filter: MuscleGroupFilter = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [MuscleGroupSort!] = []
+  ): MuscleGroupConnection!
   profile(
     """The id of the record to find."""
     id: ID!
@@ -614,6 +762,14 @@ input UpdateManyFilesInput {
   update: UpdateFileInput!
 }
 
+input UpdateManyMuscleGroupsInput {
+  """Filter used to find fields to update"""
+  filter: MuscleGroupUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateMuscleGroupInput!
+}
+
 input UpdateManyProfilesInput {
   """Filter used to find fields to update"""
   filter: ProfileUpdateFilter!
@@ -635,6 +791,12 @@ input UpdateManyUsersInput {
   update: UpdateUserInput!
 }
 
+input UpdateMuscleGroupInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input UpdateOneExerciseInput {
   """The id of the record to update"""
   id: ID!
@@ -649,6 +811,14 @@ input UpdateOneFileInput {
 
   """The update to apply."""
   update: UpdateFileInput!
+}
+
+input UpdateOneMuscleGroupInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateMuscleGroupInput!
 }
 
 input UpdateOneProfileInput {

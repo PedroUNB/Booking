@@ -71,3 +71,64 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+Require Import List Lia.
+
+Print list.
+
+Fixpoint concat (l1: list Type) (l2: list Type) := 
+match l1 with
+  | nil => l2
+  | cons h l1' => cons h (concat l1' l2)
+end.
+
+Print length.
+Print rev.
+
+Lemma concat_nil: forall l, concat l nil = l.
+Proof.
+  induction l.
+  - simpl concat. reflexivity.
+  - simpl concat. rewrite IHl. reflexivity.
+Qed.
+
+Lemma ex77: forall (l1 l2: list nat), length(l1 ++ l2) = length(l1) + length(l2).
+Proof.
+  Admitted.
+
+
+Lemma ex80: forall (l: list nat), length(rev l) = length l.
+Proof.
+  induction l.
+  - simpl. reflexivity.
+  - simpl rev. pose proof ex77. rewrite H.
+  rewrite IHl. simpl. lia.
+Qed.
+
+Lemma ex80v2: forall (l: list nat), length(rev l) = length l.
+Proof.
+  intro l. case l.
+  - simpl. reflexivity.
+  - intros n l0. simpl rev. pose proof ex77. rewrite H.
+  simpl.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fixpoint revert (l: list Type) :=
+match l with
+  | nil => l
+  | cons h l' => concat revert l' cons h nil
+end.

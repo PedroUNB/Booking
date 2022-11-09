@@ -4,7 +4,6 @@ import {
   DataType,
   Unique,
   AllowNull,
-  HasOne,
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
@@ -19,11 +18,6 @@ export class ExerciseEntity extends BaseEntity {
   @AllowNull(false)
   @Column(DataType.STRING)
   name!: string;
-
-  @Unique(false)
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  url!: string;
 
   @ForeignKey(() => FileEntity)
   @Column(DataType.UUID)
